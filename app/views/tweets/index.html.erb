@@ -1,6 +1,7 @@
 Enjoy programming!
 <%= link_to "新規投稿ページへ", tweets_new_path %>
 <h1>GeekTwitter</h1>
+<%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
 <h3>Tweet一覧</h3>
 <%= link_to "新規投稿へ", tweets_new_path %>
 <div class="tweets-container">
