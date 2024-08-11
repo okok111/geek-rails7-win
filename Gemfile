@@ -69,3 +69,9 @@ end
 gem 'devise'
 
 gem 'kaminari'
+
+gem 'dotenv-rails'
+
+gem 'cloudinary'
+
+gem 'activestorage-cloudinary-service'
