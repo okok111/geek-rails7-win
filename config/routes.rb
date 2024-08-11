@@ -6,13 +6,7 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get 'hello/index' => 'hello#index'
   get 'hello/link' => 'hello#link'
-  get 'tweets' => 'tweets#index'
-  get 'tweets/new' => 'tweets#new'
-  post 'tweets' => 'tweets#create'
-  get 'tweets/:id' => 'tweets#show',as: 'tweet'
-  patch 'tweets/:id' => 'tweets#update'
-  delete 'tweets/:id' => 'tweets#destroy'
-  get 'tweets/:id/edit' => 'tweets#edit', as:'edit_tweet'
+  resources :tweets
   root 'hello#index'
 
   # Defines the root path route ("/")
