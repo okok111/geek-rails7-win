@@ -3,14 +3,25 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all
-    search = params[:search]
-    @tweets = @tweets.joins(:user).where("body LIKE ?", "%#{search}%") if search.present?
-    @tweets = @tweets.page(params[:page]).per(3)
+    if params[:tag_ids]
+      @tweets = []
+      params[:tag_ids].each do |key, value|
+        if value == "1"
+          tag_tweets = Tag.find_by(name: key).tweets
+          @tweets = @tweets.empty? ? tag_tweets : @tweets & tag_tweets
+        end
+      end
+    end
   end
 
   def new
     @tweet = Tweet.new
   end
+
+  def okawa
+    
+  end
+
   
   def create
     tweet = Tweet.new(tweet_params)
@@ -24,6 +35,8 @@ class TweetsController < ApplicationController
 
   def show
     @tweet = Tweet.find(params[:id])
+    @comments = @tweet.comments
+    @comment = Comment.new
   end
 
   def edit
@@ -47,6 +60,6 @@ class TweetsController < ApplicationController
 
   private
   def tweet_params
-    params.require(:tweet).permit(:body,:image)
+    params.require(:tweet).permit(:body,:image, tag_ids: [])
   end
 end
