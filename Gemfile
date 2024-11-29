@@ -81,4 +81,3 @@ group :production do
   gem 'pg'
 end
 gem 'rspotify'
-gem 'ffi'
