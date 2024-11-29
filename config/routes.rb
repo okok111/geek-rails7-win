@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :songs do
+    collection do
+      get "search"
+    end
+    member do
+      get "artist"
+      get "album"
+    end
+  end
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,5 +1,7 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
+  require 'rspotify'
+  RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
 
   def index
     @tweets = Tweet.all
@@ -16,6 +18,7 @@ class TweetsController < ApplicationController
 
   def new
     @tweet = Tweet.new
+    @track = RSpotify::Track.find(params[:track_id]) if params[:track_id] 
   end
 
   def okawa
@@ -60,6 +63,6 @@ class TweetsController < ApplicationController
 
   private
   def tweet_params
-    params.require(:tweet).permit(:body,:image, tag_ids: [])
+    params.require(:tweet).permit(:body,:image,:artist_name, :album_name, :track_name, :album_image, :preview_url, :artist_id, :album_id ,tag_ids: [])
   end
 end
