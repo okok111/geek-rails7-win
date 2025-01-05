@@ -133,6 +133,8 @@ GEM
       multipart-post (~> 2)
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
+    ffi (1.17.1-x64-mingw-ucrt)
+    ffi (1.17.1-x86_64-linux-gnu)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashie (5.0.0)
@@ -348,6 +350,7 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  ffi
   importmap-rails
   jbuilder
   kaminari
